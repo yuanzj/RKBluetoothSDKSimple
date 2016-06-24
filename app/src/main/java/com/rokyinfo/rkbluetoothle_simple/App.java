@@ -55,7 +55,7 @@ public class App extends Application {
         //开启SDK log
         BleLog.setDEBUG(true);
         rkBluetoothClient = RkBluetoothClient.create(this);
-        rkBluetoothClient.getRk410ApiService().setAuthCodeCreator(new AuthCodeCreator() {
+        rkBluetoothClient.getYadeaApiService().setAuthCodeCreator(new AuthCodeCreator() {
             @Override
             public void getAuthCode(AuthCodeDeliverer callBack) {
 
@@ -115,7 +115,7 @@ public class App extends Application {
         RemoteController mRemoteController = new RemoteController();
         mRemoteController.setIndex(0);
         mRemoteController.setMacAddress(authResult.getMacAddress());
-        Observable<ConfigResult> syncCurRemoteController = rkBluetoothClient.getRk410ApiService().syncRemoteController(authResult.getConnectedDeviceAddress(), mRemoteController);
+        Observable<ConfigResult> syncCurRemoteController = rkBluetoothClient.getYadeaApiService().syncRemoteController(authResult.getConnectedDeviceAddress(), mRemoteController);
         syncCurRemoteController.observeOn(AndroidSchedulers.mainThread()).subscribe(configResult -> {
 
             if (configResult.isSuccess()) {
