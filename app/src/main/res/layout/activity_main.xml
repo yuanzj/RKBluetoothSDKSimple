@@ -54,22 +54,6 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="中控参数设置"
-            android:onClick="setCenterControlParams"
-            android:layout_marginTop="@dimen/widget_vertical_margin"
-            android:visibility="gone"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="中控参数查询"
-            android:onClick="getCenterControlParams"
-            android:layout_marginTop="@dimen/widget_vertical_margin"
-            android:visibility="gone"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="客户化配置"
             android:onClick="setCustParams"
             android:layout_marginTop="@dimen/widget_vertical_margin"/>

@@ -108,40 +108,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void setCenterControlParams(View view) {
-        YadeaApiService yadeaApiService = App.getRkBluetoothClient(this).getYadeaApiService();
-
-        RK4102ECUParameter ecuParameter = new RK4102ECUParameter();
-        ecuParameter.setVibrationLevel(1);
-        ecuParameter.setLcdScreenCode(2);
-        ecuParameter.setTraRemoteControlSwitch(1);
-        ecuParameter.setBatteryType(1);
-        ecuParameter.setGpsType(0);
-        ecuParameter.setPagingCycle(600);
-
-        Observable<ConfigResult> mObservable = yadeaApiService.setECUParameter(App.getCurrentRkCCUDevice(this).getMacAddress(), ecuParameter);
-
-        mObservable.subscribe(configResult -> {
-            Toast.makeText(this, String.valueOf(configResult.isSuccess()), Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "" + configResult.isSuccess());
-        }, throwable -> {
-            Log.d(TAG, "" + throwable);
-        });
-    }
-
-    public void getCenterControlParams(View view) {
-        YadeaApiService yadeaApiService = App.getRkBluetoothClient(this).getYadeaApiService();
-
-        Observable<RK4102ECUParameter> mObservable = yadeaApiService.getECUParameter(App.getCurrentRkCCUDevice(this).getMacAddress());
-
-        mObservable.subscribe(ecuParameter -> {
-            Toast.makeText(this, ecuParameter.toString(), Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "" + ecuParameter.toString());
-        }, throwable -> {
-            Log.d(TAG, "" + throwable);
-        });
-    }
-
     public void setCustParams(View view) {
         YadeaApiService yadeaApiService = App.getRkBluetoothClient(this).getYadeaApiService();
 
