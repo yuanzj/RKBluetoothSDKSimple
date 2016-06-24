@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         RkCCUDevice mRkCCUDevice = new RkCCUDevice();
 //        mRkCCUDevice.setSn("B00G4LB6B3");
 //        mRkCCUDevice.setMacAddress("C0:27:15:09:A7:E9");
-        mRkCCUDevice.setSn("B00G10B6F3");
-        mRkCCUDevice.setMacAddress("C0:27:15:09:A7:E6");
+        mRkCCUDevice.setSn("B00G3PC1Q4");
+        mRkCCUDevice.setMacAddress("C0:27:15:09:B2:F8");
         App.setCurrentRkCCUDevice(this, mRkCCUDevice);
     }
 
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mObservable.subscribe(mRemoteControlResult -> {
             Log.d(TAG, "isSuccess:" + mRemoteControlResult.isSuccess());
             if (mRemoteControlResult.isSuccess()) {
-                Toast.makeText(this, "设防成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "上电成功", Toast.LENGTH_SHORT).show();
             }
         }, throwable -> {
             Log.d(TAG, "" + throwable);
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         mObservable.subscribe(mRemoteControlResult -> {
             Log.d(TAG, "isSuccess:" + mRemoteControlResult.isSuccess());
             if (mRemoteControlResult.isSuccess()) {
-                Toast.makeText(this, "撤防成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "断电成功", Toast.LENGTH_SHORT).show();
             }
         }, throwable -> {
             Log.d(TAG, "" + throwable);
