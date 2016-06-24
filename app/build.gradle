@@ -40,11 +40,5 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'com.trello:rxlifecycle:0.5.0'
     compile 'com.trello:rxlifecycle-components:0.5.0'
-    //必须添加的依赖end
-    //SDK相关begin
-    compile(name:'rkbluetoothle-release', ext:'aar')
-    compile(name:'rkconverter-release', ext:'aar')
-    compile(name:'rxandroidble-release', ext:'aar')
-    //SDK相关end
-
+    compile 'com.rokyinfo:rkbluetoothle:1.0.2'
 }
