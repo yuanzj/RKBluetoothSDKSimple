@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="上电"
             android:onClick="powerOn"
-            />
+            android:layout_marginTop="@dimen/widget_vertical_margin"/>
 
         <Button
             android:layout_width="match_parent"
