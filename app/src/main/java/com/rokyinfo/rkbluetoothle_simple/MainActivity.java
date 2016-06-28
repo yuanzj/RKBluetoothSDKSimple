@@ -8,10 +8,9 @@ import android.widget.Toast;
 import com.rokyinfo.ble.toolbox.protocol.custom.YadeaApiService;
 import com.rokyinfo.ble.toolbox.protocol.model.CallAndMsgParameter;
 import com.rokyinfo.ble.toolbox.protocol.model.ConfigResult;
-import com.rokyinfo.ble.toolbox.protocol.model.CustParameter;
-import com.rokyinfo.ble.toolbox.protocol.model.RK4102ECUParameter;
 import com.rokyinfo.ble.toolbox.protocol.model.RemoteControlResult;
 import com.rokyinfo.ble.toolbox.protocol.model.VehicleStatus;
+import com.rokyinfo.ble.toolbox.protocol.model.YadeaCustParameter;
 import com.rokyinfo.ble.toolbox.protocol.model.YadeaFault;
 import com.rokyinfo.rkbluetoothle_simple.mock.RkCCUDevice;
 import rx.Observable;
@@ -30,6 +29,38 @@ public class MainActivity extends AppCompatActivity {
         mRkCCUDevice.setSn("B00G3PC1Q4");
         mRkCCUDevice.setMacAddress("C0:27:15:09:B2:F8");
         App.setCurrentRkCCUDevice(this, mRkCCUDevice);
+    }
+
+    public void lock(View view) {
+
+        YadeaApiService yadeaApiService = App.getRkBluetoothClient(this).getYadeaApiService();
+        Observable<RemoteControlResult> mObservable = yadeaApiService.lock(App.getCurrentRkCCUDevice(this).getMacAddress());
+
+        mObservable.subscribe(mRemoteControlResult -> {
+            Log.d(TAG, "isSuccess:" + mRemoteControlResult.isSuccess());
+            if (mRemoteControlResult.isSuccess()) {
+                Toast.makeText(this, "设防成功", Toast.LENGTH_SHORT).show();
+            }
+        }, throwable -> {
+            Log.d(TAG, "" + throwable);
+        });
+
+    }
+
+    public void unlock(View view) {
+
+        YadeaApiService yadeaApiService = App.getRkBluetoothClient(this).getYadeaApiService();
+        Observable<RemoteControlResult> mObservable = yadeaApiService.unlock(App.getCurrentRkCCUDevice(this).getMacAddress());
+
+        mObservable.subscribe(mRemoteControlResult -> {
+            Log.d(TAG, "isSuccess:" + mRemoteControlResult.isSuccess());
+            if (mRemoteControlResult.isSuccess()) {
+                Toast.makeText(this, "撤防成功", Toast.LENGTH_SHORT).show();
+            }
+        }, throwable -> {
+            Log.d(TAG, "" + throwable);
+        });
+
     }
 
     public void powerOn(View view) {
@@ -111,14 +142,14 @@ public class MainActivity extends AppCompatActivity {
     public void setCustParams(View view) {
         YadeaApiService yadeaApiService = App.getRkBluetoothClient(this).getYadeaApiService();
 
-        CustParameter custParameter = new CustParameter();
-        custParameter.setVibrationType(2);
-        custParameter.setAutoLockTime(3);
-        custParameter.setAutoParkTime(5);
-        custParameter.setHornVolume(1);
-        custParameter.setThreeColorLampSupport(0xFF82AB);
+        YadeaCustParameter custParameter = new YadeaCustParameter();
+        //颜色hex值
+        custParameter.setThreeColorLampSupport("FF82AB");
         custParameter.setDelayCloseLight(22);
-        custParameter.setTimingOpenTime(128);
+        //17:30
+        custParameter.setTimingStartTime(1730);
+        //20:30
+        custParameter.setTimingStartTime(2030);
 
         Observable<ConfigResult> mObservable = yadeaApiService.setCustParameter(App.getCurrentRkCCUDevice(this).getMacAddress(), custParameter);
 
@@ -133,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
     public void getCustParams(View view) {
         YadeaApiService yadeaApiService = App.getRkBluetoothClient(this).getYadeaApiService();
 
-        Observable<CustParameter> mObservable = yadeaApiService.getCustParameter(App.getCurrentRkCCUDevice(this).getMacAddress());
+        Observable<YadeaCustParameter> mObservable = yadeaApiService.getCustParameter(App.getCurrentRkCCUDevice(this).getMacAddress());
 
         mObservable.subscribe(custParameter -> {
             Toast.makeText(this, custParameter.toString(), Toast.LENGTH_SHORT).show();

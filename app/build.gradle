@@ -40,5 +40,5 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'com.trello:rxlifecycle:0.5.0'
     compile 'com.trello:rxlifecycle-components:0.5.0'
-    compile 'com.rokyinfo:rkbluetoothle:1.0.2'
+    compile 'com.rokyinfo:rkbluetoothle:1.0.3'
 }
