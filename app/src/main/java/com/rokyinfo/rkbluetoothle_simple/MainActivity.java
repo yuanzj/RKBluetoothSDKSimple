@@ -186,12 +186,12 @@ public class MainActivity extends AppCompatActivity {
 
         CallAndMsgParameter callAndMsgParameter = new CallAndMsgParameter();
         callAndMsgParameter.setCallPrompt(1);
-        callAndMsgParameter.setMsgPrompt(0);
+        callAndMsgParameter.setMsgPrompt(1);
 
         Observable<ConfigResult> mObservable = yadeaApiService.setCallAndMsgParameter(App.getCurrentRkCCUDevice(this).getMacAddress(), callAndMsgParameter);
 
         mObservable.subscribe(configResult -> {
-            Toast.makeText(this, configResult.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, String.valueOf(configResult.isSuccess()), Toast.LENGTH_SHORT).show();
             Log.d(TAG, "" + configResult.toString());
         }, throwable -> {
             Log.d(TAG, "" + throwable);
