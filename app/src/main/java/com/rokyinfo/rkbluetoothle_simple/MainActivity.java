@@ -1,5 +1,6 @@
 package com.rokyinfo.rkbluetoothle_simple;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -26,8 +27,11 @@ public class MainActivity extends AppCompatActivity {
         RkCCUDevice mRkCCUDevice = new RkCCUDevice();
 //        mRkCCUDevice.setSn("B00G4LB6B3");
 //        mRkCCUDevice.setMacAddress("C0:27:15:09:A7:E9");
-        mRkCCUDevice.setSn("B00G3PC1Q4");
-        mRkCCUDevice.setMacAddress("C0:27:15:09:B2:F8");
+//        mRkCCUDevice.setSn("B00G3PC1Q4");
+//        mRkCCUDevice.setMacAddress("C0:27:15:09:B2:F8");
+
+        mRkCCUDevice.setSn("B00GDV5DZ3");
+        mRkCCUDevice.setMacAddress("C0:27:15:09:AE:92");
         App.setCurrentRkCCUDevice(this, mRkCCUDevice);
     }
 
@@ -140,25 +144,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setCustParams(View view) {
-        YadeaApiService yadeaApiService = App.getRkBluetoothClient(this).getYadeaApiService();
+//        YadeaApiService yadeaApiService = App.getRkBluetoothClient(this).getYadeaApiService();
+//
+//        YadeaCustParameter custParameter = new YadeaCustParameter();
+//        //颜色hex值
+//        custParameter.setThreeColorLampSupport("FF82AB");
+//        custParameter.setDelayCloseLight(22);
+//        //17:30
+//        custParameter.setTimingStartTime(1730);
+//        //20:30
+//        custParameter.setTimingStartTime(2030);
+//
+//        Observable<ConfigResult> mObservable = yadeaApiService.setCustParameter(App.getCurrentRkCCUDevice(this).getMacAddress(), custParameter);
+//
+//        mObservable.subscribe(configResult -> {
+//            Toast.makeText(this, String.valueOf(configResult.isSuccess()), Toast.LENGTH_SHORT).show();
+//            Log.d(TAG, "" + configResult.isSuccess());
+//        }, throwable -> {
+//            Log.d(TAG, "" + throwable);
+//        });
 
-        YadeaCustParameter custParameter = new YadeaCustParameter();
-        //颜色hex值
-        custParameter.setThreeColorLampSupport("FF82AB");
-        custParameter.setDelayCloseLight(22);
-        //17:30
-        custParameter.setTimingStartTime(1730);
-        //20:30
-        custParameter.setTimingStartTime(2030);
-
-        Observable<ConfigResult> mObservable = yadeaApiService.setCustParameter(App.getCurrentRkCCUDevice(this).getMacAddress(), custParameter);
-
-        mObservable.subscribe(configResult -> {
-            Toast.makeText(this, String.valueOf(configResult.isSuccess()), Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "" + configResult.isSuccess());
-        }, throwable -> {
-            Log.d(TAG, "" + throwable);
-        });
+        Intent intent = new Intent(this, CustParamsActivity.class);
+        startActivity(intent);
     }
 
     public void getCustParams(View view) {

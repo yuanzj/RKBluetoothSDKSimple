@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg1">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/holo_gray_light" />
+
+    <LinearLayout
+        android:id="@+id/threeColor_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vertical_height_56"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/btn_default"
+        android:paddingLeft="@dimen/horizontal_padding"
+        android:paddingRight="@dimen/horizontal_padding"
+        android:clickable="true"
+        android:onClick="threeColorSetting">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/text"
+            android:textSize="@dimen/body_txt_size"
+            android:text="三色灯支持"/>
+
+        <TextView
+            android:id="@+id/threeColor_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/new_dark_blue"
+            android:textSize="@dimen/body_txt_size"
+            android:text=""/>
+
+    </LinearLayout>
+
+    <include layout="@layout/horizontal_line_pad16"/>
+
+    <LinearLayout
+        android:id="@+id/delay_lamp_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vertical_height_56"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/btn_default"
+        android:paddingLeft="@dimen/horizontal_padding"
+        android:paddingRight="@dimen/horizontal_padding"
+        android:clickable="true"
+        android:onClick="delayLampSetting">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/text"
+            android:textSize="@dimen/body_txt_size"
+            android:text="延迟关闭大灯"/>
+
+        <TextView
+            android:id="@+id/delay_lamp_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/new_dark_blue"
+            android:textSize="@dimen/body_txt_size"
+            android:text=""/>
+
+    </LinearLayout>
+
+    <include layout="@layout/horizontal_line_pad16"/>
+
+    <LinearLayout
+        android:id="@+id/timing_start_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vertical_height_56"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/btn_default"
+        android:paddingLeft="@dimen/horizontal_padding"
+        android:paddingRight="@dimen/horizontal_padding"
+        android:clickable="true"
+        android:onClick="timeStartSetting">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/text"
+            android:textSize="@dimen/body_txt_size"
+            android:text="延迟开启时间(起始)"/>
+
+        <TextView
+            android:id="@+id/timing_start_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/new_dark_blue"
+            android:textSize="@dimen/body_txt_size"
+            android:text=""/>
+
+    </LinearLayout>
+
+    <include layout="@layout/horizontal_line_pad16"/>
+
+    <LinearLayout
+        android:id="@+id/timing_end_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vertical_height_56"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/btn_default"
+        android:paddingLeft="@dimen/horizontal_padding"
+        android:paddingRight="@dimen/horizontal_padding"
+        android:clickable="true"
+        android:onClick="timingEndSetting">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/text"
+            android:textSize="@dimen/body_txt_size"
+            android:text="延迟开启时间(结束)"/>
+
+        <TextView
+            android:id="@+id/timing_end_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/new_dark_blue"
+            android:textSize="@dimen/body_txt_size"
+            android:text=""/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/holo_gray_light" />
+
+</LinearLayout>
