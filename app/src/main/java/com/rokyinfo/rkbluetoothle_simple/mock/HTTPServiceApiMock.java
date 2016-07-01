@@ -42,6 +42,8 @@ public class HTTPServiceApiMock {
                     callback.success("Q1NsmKbbaf+mfktSpyNJ5w==");
                 }else if (sn.equalsIgnoreCase("B00G3PC1Q4")){
                     callback.success("uM0ySGUJzQCF+uGeIdWQVQ==");
+                }else if (sn.equalsIgnoreCase("B00GDV5DZ3")){
+                    callback.success("M8Cjz3SFrA2XBefwzj/1Ug==");
                 }else {
                     callback.error(new Exception("不存在设备序列号"));
                 }
