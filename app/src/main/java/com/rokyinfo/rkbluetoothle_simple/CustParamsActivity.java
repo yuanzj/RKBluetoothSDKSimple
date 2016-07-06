@@ -33,7 +33,7 @@ public class CustParamsActivity extends AppCompatActivity {
     private ColorPicker colorPicker;
     private String hexNewColor;
 
-    TextView threeColor_value, delay_lamp_value, timing_start_value, timing_end_value;
+    TextView threeColor_value, delay_lamp_value, timing_start_value, timing_end_value, gear_value;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +44,7 @@ public class CustParamsActivity extends AppCompatActivity {
         delay_lamp_value = (TextView) findViewById(R.id.delay_lamp_value);
         timing_start_value = (TextView) findViewById(R.id.timing_start_value);
         timing_end_value = (TextView) findViewById(R.id.timing_end_value);
+        gear_value = (TextView) findViewById(R.id.gear_value);
 
         YadeaApiService yadeaApiService = App.getRkBluetoothClient(this).getYadeaApiService();
 
@@ -54,6 +55,7 @@ public class CustParamsActivity extends AppCompatActivity {
             delay_lamp_value.setText(String.valueOf(custParameter.getDelayCloseLight()));
             timing_start_value.setText(String.valueOf(custParameter.getTimingStartTime()));
             timing_end_value.setText(String.valueOf(custParameter.getTimingEndTime()));
+            gear_value.setText(String.valueOf(custParameter.getGearsType()));
             Log.d("cyy", "" + custParameter.toString());
         }, throwable -> {
             Log.d("cyy", "" + throwable);
@@ -178,6 +180,26 @@ public class CustParamsActivity extends AppCompatActivity {
                 }).show();
     }
 
+    public void setGearType(View view){
+        new MaterialDialog.Builder(this)
+                .title("档位信息")
+//                        .content(R.string.nick_name_label)
+                .inputType(InputType.TYPE_CLASS_NUMBER)
+                .negativeText("取消")
+                .input("", gear_value.getText(), new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(MaterialDialog dialog, CharSequence input) {
+                        if (!TextUtils.isEmpty(input)) {
+                            gear_value.setText(input);
+                            setCustParams();
+                        } else {
+                            Toast.makeText(CustParamsActivity.this, "输入值不能为空", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).show();
+    }
+
+
     public void setCustParams(){
         String threeColor = "FFFFFF";
         if(!TextUtils.isEmpty(threeColor_value.getText())){
@@ -195,12 +217,17 @@ public class CustParamsActivity extends AppCompatActivity {
         if(!TextUtils.isEmpty(timing_end_value.getText())){
             timingEnd = timing_end_value.getText().toString();
         }
+        int gearType = 0;
+        if(!TextUtils.isEmpty(gear_value.getText())){
+            gearType = Integer.parseInt(gear_value.getText().toString());
+        }
 
         YadeaCustParameter yadeaCustParameter = new YadeaCustParameter();
         yadeaCustParameter.setThreeColorLampSupport(threeColor);
         yadeaCustParameter.setDelayCloseLight(delayLamp);
         yadeaCustParameter.setTimingStartTime(timingStart);
         yadeaCustParameter.setTimingEndTime(timingEnd);
+        yadeaCustParameter.setGearsType(gearType);
 
         YadeaApiService yadeaApiService = App.getRkBluetoothClient(this).getYadeaApiService();
         Observable<ConfigResult> mObservable = yadeaApiService.setCustParameter(App.getCurrentRkCCUDevice(this).getMacAddress(), yadeaCustParameter);
