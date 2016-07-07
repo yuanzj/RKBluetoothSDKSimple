@@ -137,6 +137,38 @@
 
     </LinearLayout>
 
+    <include layout="@layout/horizontal_line_pad16"/>
+
+    <LinearLayout
+        android:id="@+id/gear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vertical_height_56"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/btn_default"
+        android:paddingLeft="@dimen/horizontal_padding"
+        android:paddingRight="@dimen/horizontal_padding"
+        android:clickable="true"
+        android:onClick="setGearType">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/text"
+            android:textSize="@dimen/body_txt_size"
+            android:text="档位信息"/>
+
+        <TextView
+            android:id="@+id/gear_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/new_dark_blue"
+            android:textSize="@dimen/body_txt_size"
+            android:text=""/>
+
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.8dp"

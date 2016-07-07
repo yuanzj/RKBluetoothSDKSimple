@@ -62,7 +62,7 @@ public class App extends Application {
                 //查询本地存储当前手机如果已经连接过设备并鉴权成功则直接发送默认鉴权码鉴权
                 if (DAOServiceApiMock.authStatus(getApplicationContext(), currentRkCCUDevice.getMacAddress())) {
 
-                    callBack.postAuthCode(Rk410BleUtil.createCommonAuthCode(), 0, null);
+                    callBack.postAuthCode(Rk410BleUtil.createCommonAuthCodeStr(), 0, null);
 
                 } else {
 
@@ -71,7 +71,7 @@ public class App extends Application {
                         @Override
                         public void success(String authCode) {
                             //2.提交鉴权码
-                            callBack.postAuthCode(Base64.decode(authCode, Base64.DEFAULT), 0, null);
+                            callBack.postAuthCode(authCode, 0, null);
                         }
 
                         @Override
