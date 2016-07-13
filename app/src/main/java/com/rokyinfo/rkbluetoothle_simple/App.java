@@ -55,6 +55,11 @@ public class App extends Application {
         //开启SDK log
         BleLog.setDEBUG(true);
         rkBluetoothClient = RkBluetoothClient.create(this);
+        try {
+            rkBluetoothClient.setQueueSize(5);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         rkBluetoothClient.getYadeaApiService().setAuthCodeCreator(new AuthCodeCreator() {
             @Override
             public void getAuthCode(AuthCodeDeliverer callBack) {
